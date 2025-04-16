@@ -25,10 +25,10 @@ using DatapathFixPlugin.Extensions;
 
 [assembly: PluginDisplayName("DatapathFix")]
 [assembly: PluginAuthor("Dyvinia")]
-[assembly: PluginVersion("1.7.1")]
+[assembly: PluginVersion("1.7.2")]
 
 [assembly: RegisterOptionsExtension(typeof(LaunchOptions), PluginManagerType.Both)]
 [assembly: RegisterExecutionAction(typeof(LaunchExecutionAction))]
-[assembly: RegisterMenuExtension(typeof(DatapathFixMenuExtension), PluginManagerType.Both)]
-[assembly: RegisterMenuExtension(typeof(DPFGithubMenuExtension), PluginManagerType.Both)]
-[assembly: RegisterMenuExtension(typeof(DPFDonateMenuExtension), PluginManagerType.Both)]
+[assembly: RegisterMenuExtension(typeof(DatapathFixMenuExtension))]
+[assembly: RegisterMenuExtension(typeof(DPFGithubMenuExtension))]
+[assembly: RegisterMenuExtension(typeof(DPFDonateMenuExtension))]

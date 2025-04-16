@@ -1,17 +1,17 @@
 # DatapathFix
-[![Latest Release](https://img.shields.io/github/v/release/Dyvinia/DatapathFixPlugin?style=for-the-badge&labelColor=270943&color=8f35e3&label=Release)](https://github.com/Dyvinia/DatapathFixPlugin/releases/latest)
-[![Downloads](https://img.shields.io/github/downloads/Dyvinia/DatapathFixPlugin/total?style=for-the-badge&labelColor=270943&color=8f35e3&label=Downloads)](https://github.com/Dyvinia/DatapathFixPlugin/releases)
+[![Latest Release](https://img.shields.io/github/v/release/J-Lyt/DatapathFixPlugin?style=for-the-badge&labelColor=270943&color=8f35e3&label=Latest%20Release)](https://github.com/J-Lyt/DatapathFixPlugin/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/J-Lyt/DatapathFixPlugin/total?style=for-the-badge&labelColor=270943&color=8f35e3&label=Downloads)](https://github.com/J-Lyt/DatapathFixPlugin/releases)
+
+[![Latest Release](https://img.shields.io/github/v/release/Dyvinia/DatapathFixPlugin?style=for-the-badge&labelColor=270943&color=8f35e3&label=1.0.6.3%20Release)](https://github.com/Dyvinia/DatapathFixPlugin/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/Dyvinia/DatapathFixPlugin/total?style=for-the-badge&labelColor=270943&color=8f35e3&label=1.0.6.3%20Downloads)](https://github.com/Dyvinia/DatapathFixPlugin/releases)
 
 DatapathFix is an experimental Frosty plugin to fix an issue with modding games on Epic Games Store where mods do not appear in the game. This plugin works with games that FrostyFix does not support.
 
 ## Instructions
 
-### [Download the latest release](https://github.com/Dyvinia/DatapathFixPlugin/releases)
-
-1. Download & Unzip the latest version of [Frosty Toolsuite](https://github.com/CadeEvs/FrostyToolsuite/releases)
-2. Go to the folder where you Unzipped frosty and go into the `Plugins` folder 
-3. Drag the `DatapathFixPlugin.dll` file into the `Plugins` folder
-4. Open Frosty and make sure to disable `Launch Platform Plugin` or delete it from the `Plugins` folder
+1. Go to the folder where you Unzipped frosty and go into the `Plugins` folder 
+2. Drag the `DatapathFixPlugin.dll` file into the `Plugins` folder
+3. Make sure to delete `Launch Platform Plugin` from the `Plugins` folder
 
 ### Troubleshooting
 - Disable In Game Overlay in EA Desktop

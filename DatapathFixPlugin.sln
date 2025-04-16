@@ -30,8 +30,8 @@ Global
 		{000B2288-20C5-4CE0-A58F-1CCF3DBC6A33}.Debug|Any CPU.Build.0 = Developer - Debug|x64
 		{000B2288-20C5-4CE0-A58F-1CCF3DBC6A33}.Debug|x64.ActiveCfg = Debug|x64
 		{000B2288-20C5-4CE0-A58F-1CCF3DBC6A33}.Debug|x64.Build.0 = Debug|x64
-		{000B2288-20C5-4CE0-A58F-1CCF3DBC6A33}.Release|Any CPU.ActiveCfg = Release - Alpha|x64
-		{000B2288-20C5-4CE0-A58F-1CCF3DBC6A33}.Release|Any CPU.Build.0 = Release - Alpha|x64
+		{000B2288-20C5-4CE0-A58F-1CCF3DBC6A33}.Release|Any CPU.ActiveCfg = Release|x64
+		{000B2288-20C5-4CE0-A58F-1CCF3DBC6A33}.Release|Any CPU.Build.0 = Release|x64
 		{000B2288-20C5-4CE0-A58F-1CCF3DBC6A33}.Release|x64.ActiveCfg = Release|x64
 		{000B2288-20C5-4CE0-A58F-1CCF3DBC6A33}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection

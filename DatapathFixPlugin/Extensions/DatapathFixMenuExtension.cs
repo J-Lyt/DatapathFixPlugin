@@ -53,7 +53,7 @@ namespace DatapathFixPlugin.Extensions {
 
         public override string MenuItemName => "Github";
 
-        public override RelayCommand MenuItemClicked => new RelayCommand((o) => Process.Start("https://github.com/Dyvinia/DatapathFixPlugin"));
+        public override RelayCommand MenuItemClicked => new RelayCommand((o) => Process.Start("https://github.com/J-Lyt/DatapathFixPlugin"));
     }
 
     public class DPFDonateMenuExtension : MenuExtension {

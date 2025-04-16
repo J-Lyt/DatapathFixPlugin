@@ -110,14 +110,14 @@ namespace DatapathFixPlugin.Actions {
                 using (HttpClient client = new HttpClient()) {
                     client.DefaultRequestHeaders.Add("User-Agent", "request");
 
-                    Version latestVersion = new Version(JsonConvert.DeserializeObject<Release>(await client.GetStringAsync($"https://api.github.com/repos/Dyvinia/DatapathFixPlugin/releases/latest")).Tag.Substring(1));
+                    Version latestVersion = new Version(JsonConvert.DeserializeObject<Release>(await client.GetStringAsync($"https://api.github.com/repos/J-Lyt/DatapathFixPlugin/releases/latest")).Tag.Substring(1));
 
                     if (CurrentVersion.CompareTo(latestVersion) < 0) {
                         await Task.Run(() => {
                             SystemSounds.Exclamation.Play();
                             MessageBoxResult mbResult = FrostyMessageBox.Show("You are using an outdated version of DatapathFix." + Environment.NewLine + "Would you like to download the latest version?", "DatapathFixPlugin", MessageBoxButton.YesNo);
                             if (mbResult == MessageBoxResult.Yes)
-                                Process.Start("https://github.com/Dyvinia/DatapathFixPlugin/releases/latest");
+                                Process.Start("https://github.com/J-Lyt/DatapathFixPlugin/releases/latest");
                         });
                     }
                 }
@@ -127,7 +127,7 @@ namespace DatapathFixPlugin.Actions {
 
         public LaunchExecutionAction() {
             App.Logger.Log($"DatapathFix v{CurrentVersion} by Dyvinia");
-            App.Logger.Log(@"Github: https://github.com/Dyvinia/DatapathFixPlugin");
+            App.Logger.Log(@"Github: https://github.com/J-Lyt/DatapathFixPlugin");
             App.Logger.Log(@"Donate: https://ko-fi.com/Dyvinia");
             App.Logger.Log(@"Note: This is only needed for Steam or Epic Games Store; no longer needed when using only the EA App");
 
