@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 	<PropertyGroup>
-		<Configurations>Debug;Release</Configurations>
+		<Configurations>Developer - Debug;Release - Alpha;Release - Beta;Release - Final</Configurations>
 		<Platforms>x64</Platforms>
 		<TargetFrameworks>net48</TargetFrameworks>
 		<AssemblyTitle>DatapathFixPlugin</AssemblyTitle>
@@ -13,14 +13,26 @@
 		<OutputType>Library</OutputType>
 	</PropertyGroup>
 
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Developer - Debug|x64' ">
 		<DebugSymbols>true</DebugSymbols>
-		<OutputPath>bin\Debug\</OutputPath>
+		<OutputPath>bin\Developer\Debug\</OutputPath>
 		<DefineConstants>DEBUG;TRACE</DefineConstants>
 	</PropertyGroup>
+	
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release - Alpha|x64' ">
+		<DebugSymbols>true</DebugSymbols>
+		<OutputPath>bin\Release\Alpha\</OutputPath>
+		<DefineConstants>TRACE</DefineConstants>
+	</PropertyGroup>
+	
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release - Beta|x64' ">
+		<DebugSymbols>true</DebugSymbols>
+		<OutputPath>bin\Release\Beta\</OutputPath>
+		<DefineConstants>TRACE</DefineConstants>
+	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-		<OutputPath>bin\Release\</OutputPath>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release - Final|x64'">
+		<OutputPath>bin\Release\Final\</OutputPath>
 		<DefineConstants>TRACE</DefineConstants>
 		<Optimize>true</Optimize>
 	</PropertyGroup>
@@ -36,18 +48,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Reference Include="FrostyControls">
-			<HintPath>..\..\FrostyToolsuite\FrostyModManager\bin\Release\Final\FrostyControls.dll</HintPath>
-		</Reference>
-		<Reference Include="FrostyCore">
-			<HintPath>..\..\FrostyToolsuite\FrostyModManager\bin\Release\Final\FrostyCore.dll</HintPath>
-		</Reference>
-		<Reference Include="FrostySdk">
-			<HintPath>..\..\FrostyToolsuite\FrostyModManager\bin\Release\Final\FrostySdk.dll</HintPath>
-		</Reference>
+		<ProjectReference Include="..\..\..\FrostyControls\FrostyControls.csproj">
+			<Private>false</Private>
+		</ProjectReference>
+		<ProjectReference Include="..\..\..\FrostyPlugin\FrostyCore.csproj">
+			<Private>false</Private>
+		</ProjectReference>
+		<ProjectReference Include="..\..\..\FrostySdk\FrostySdk.csproj">
+			<Private>false</Private>
+		</ProjectReference>
 		<Reference Include="Microsoft.CSharp" />
 		<Reference Include="Newtonsoft.Json">
-			<HintPath>..\..\FrostyToolsuite\FrostyModManager\bin\Release\Final\ThirdParty\Newtonsoft.Json.dll</HintPath>
+			<HintPath>..\..\..\FrostyEditor\ThirdParty\Newtonsoft.Json.dll</HintPath>
 		</Reference>
 		<Reference Include="PresentationCore" />
 		<Reference Include="PresentationFramework" />
@@ -57,6 +69,7 @@
 	</ItemGroup>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<Exec Command="xcopy /Y &quot;$(TargetPath)&quot; &quot;$(SolutionDir)$(OutDir)Plugins\&quot;" />
+		<Exec Command='xcopy /Y "$(TargetPath)" "$(SolutionDir)$(OutDir)Plugins\"' />
+		<Exec Command='xcopy /Y "$(TargetPath)" "$(SolutionDir)..\FrostyModManager\$(OutDir)Plugins\"' />
 	</Target>
 </Project>
