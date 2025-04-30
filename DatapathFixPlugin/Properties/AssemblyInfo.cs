@@ -25,7 +25,7 @@ using DatapathFixPlugin.Extensions;
 
 [assembly: PluginDisplayName("DatapathFix")]
 [assembly: PluginAuthor("Dyvinia")]
-[assembly: PluginVersion("1.7.2")]
+[assembly: PluginVersion("1.7.3")]
 
 [assembly: RegisterOptionsExtension(typeof(LaunchOptions), PluginManagerType.Both)]
 [assembly: RegisterExecutionAction(typeof(LaunchExecutionAction))]
