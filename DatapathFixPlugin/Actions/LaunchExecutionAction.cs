@@ -39,6 +39,24 @@ namespace DatapathFixPlugin.Actions {
         public Version CurrentVersion = new Version(Assembly.GetExecutingAssembly().GetCustomAttribute<PluginVersionAttribute>().Version);
 
         public override Action<ILogger, PluginManagerType, CancellationToken> PreLaunchAction => new Action<ILogger, PluginManagerType, CancellationToken>((ILogger logger, PluginManagerType type, CancellationToken cancelToken) => {
+            bool FirstLaunch = Config.Get("DatapathFixFirstLaunch", true) && Config.Get("DatapathFixEnabled", true);
+
+            if (FirstLaunch)
+            {
+                MessageBoxResult result = FrostyMessageBox.Show(
+                    "DatapathFix fixes an issue with modding games on Epic Games Store where mods do not appear in the game.\n\r\n" +
+                    "It can also be used to bypass the 'Launch Game with custom arguments' window on Steam when launching the game. If your mods do not appear in-game when this plugin is enabled, it can be disabled by going to: Tools > Options > DathpathFix Options.\n\n" +
+                    "Would you like to keep this plugin enabled?", "DatapathFixPlugin", MessageBoxButton.YesNo);
+
+                if (result == MessageBoxResult.No)
+                {
+                    Config.Add("DatapathFixEnabled", false);
+                }
+
+                Config.Add("DatapathFixFirstLaunch", false);
+                Config.Save();
+            }
+
             if (Config.Get("DatapathFixEnabled", true) && File.Exists(DatapathFix)) {
                 ResetGameDirectory();
 
@@ -135,6 +153,7 @@ namespace DatapathFixPlugin.Actions {
                 CheckUpdates();
 
             ExtractDatapathFix();
+            ResetGameDirectory();
         }
 
         public static void ExtractDatapathFix() {
