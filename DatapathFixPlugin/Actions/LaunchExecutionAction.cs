@@ -45,11 +45,12 @@ namespace DatapathFixPlugin.Actions {
             {
                 MessageBoxResult result = FrostyMessageBox.Show(
                     "DatapathFix fixes an issue with modding games on Epic Games Store where mods do not appear in the game.\n\r\n" +
-                    "It can also be used to bypass the 'Launch Game with custom arguments' window on Steam when launching the game. If your mods do not appear in-game when this plugin is enabled, it can be disabled by going to: Tools > Options > DathpathFix Options.\n\n" +
+                    "It can also be used to bypass the 'Launch Game with custom arguments' window on Steam when launching the game. If the game fails to launch or your mods do not appear in-game when this plugin is enabled, you can disable it by going to: Tools > Options > DatapathFix Options.\n\n" +
                     "Would you like to keep this plugin enabled?", "DatapathFixPlugin", MessageBoxButton.YesNo);
 
-                if (result == MessageBoxResult.No)
+                if (result == MessageBoxResult.No || result == MessageBoxResult.Cancel)
                 {
+                    FrostyMessageBox.Show("DatapathFix has been disabled", "DatapathFixPlugin", MessageBoxButton.OK);
                     Config.Add("DatapathFixEnabled", false);
                 }
 
