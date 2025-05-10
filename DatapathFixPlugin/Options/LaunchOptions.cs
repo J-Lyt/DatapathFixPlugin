@@ -14,12 +14,6 @@ namespace DatapathFixPlugin.Options {
         public bool DatapathFixEnabled { get; set; } = true;
 
         [Category("DatapathFix")]
-        [DisplayName("Check for Updates")]
-        [Description("Check Github for DatapathFix updates")]
-        [EbxFieldMeta(EbxFieldType.Boolean)]
-        public bool DatapathFixUpdateCheck { get; set; } = true;
-
-        [Category("DatapathFix")]
         [DisplayName("First Launch")]
         [Description("Enables window upon first launch when DatapathFix is enabled.")]
         [EbxFieldMeta(EbxFieldType.Boolean)]
@@ -33,14 +27,12 @@ namespace DatapathFixPlugin.Options {
 
         public override void Load() {
             DatapathFixEnabled = Config.Get("DatapathFixEnabled", true);
-            DatapathFixUpdateCheck = Config.Get("DatapathFixUpdateCheck", true);
             DatapathFixFirstLaunch = Config.Get("DatapathFixFirstLaunch", true);
             DatapathFixDebugMode = Config.Get("DatapathFixDebugMode", false);
         }
 
         public override void Save() {
             Config.Add("DatapathFixEnabled", DatapathFixEnabled);
-            Config.Add("DatapathFixUpdateCheck", DatapathFixUpdateCheck);
             Config.Add("DatapathFixFirstLaunch", DatapathFixFirstLaunch);
             Config.Add("DatapathFixDebugMode", DatapathFixDebugMode);
 
