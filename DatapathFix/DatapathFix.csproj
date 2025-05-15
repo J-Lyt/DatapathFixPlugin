@@ -25,6 +25,20 @@
 		<DefineConstants>DEBUG;TRACE</DefineConstants>
 		<ErrorReport>prompt</ErrorReport>
 		<WarningLevel>4</WarningLevel>
+		<ApplicationIcon>icon.ico</ApplicationIcon>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug - Veilguard|AnyCPU' ">
+		<AssemblyName>DatapathFix(DEBUG)</AssemblyName>
+		<PlatformTarget>AnyCPU</PlatformTarget>
+		<DebugType>pdbonly</DebugType>
+		<Optimize>true</Optimize>
+		<OutputPath>bin\Debug\</OutputPath>
+		<OutputType>Exe</OutputType>
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+		<ApplicationIcon>iconVeilguard.ico</ApplicationIcon>
 	</PropertyGroup>
 	
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -36,10 +50,19 @@
 		<DefineConstants>TRACE</DefineConstants>
 		<ErrorReport>prompt</ErrorReport>
 		<WarningLevel>4</WarningLevel>
-	</PropertyGroup>
-	
-	<PropertyGroup>
 		<ApplicationIcon>icon.ico</ApplicationIcon>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release - Veilguard|AnyCPU' ">
+		<PlatformTarget>AnyCPU</PlatformTarget>
+		<DebugType>pdbonly</DebugType>
+		<Optimize>true</Optimize>
+		<OutputPath>bin\Release\</OutputPath>
+		<OutputType>WinExe</OutputType>
+		<DefineConstants>TRACE</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+		<ApplicationIcon>iconVeilguard.ico</ApplicationIcon>
 	</PropertyGroup>
 	
 	<PropertyGroup>
@@ -64,6 +87,7 @@
 	
 	<ItemGroup>
 		<Content Include="icon.ico" />
+		<Content Include="iconVeilguard.ico" />
 	</ItemGroup>
 	
 	<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" /> 
