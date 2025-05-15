@@ -120,7 +120,15 @@ namespace DatapathFixPlugin.Actions {
             App.Logger.Log($"DatapathFix v{CurrentVersion} by Dyvinia");
             App.Logger.Log(@"Github: https://github.com/J-Lyt/DatapathFixPlugin");
             App.Logger.Log(@"Donate: https://ko-fi.com/Dyvinia");
-            App.Logger.Log(@"Note: This is only needed for Steam or Epic Games Store; no longer needed when using only the EA App");
+
+            if (ProfilesLibrary.IsLoaded(ProfileVersion.DragonAgeTheVeilguard))
+            {
+                App.Logger.Log(@"Note: This plugin is only needed for Epic Games Store but can be used to bypass the 'Launch Game with custom arguments' window on Steam.");
+            }
+            else
+            {
+                App.Logger.Log(@"Note: This plugin is only needed for Steam or Epic Games Store; no longer needed when using only the EA App.");
+            }
 
             ExtractDatapathFix();
             ResetGameDirectory();
