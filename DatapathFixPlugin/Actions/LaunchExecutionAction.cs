@@ -39,18 +39,36 @@ namespace DatapathFixPlugin.Actions {
         public Version CurrentVersion = new Version(Assembly.GetExecutingAssembly().GetCustomAttribute<PluginVersionAttribute>().Version);
 
         public override Action<ILogger, PluginManagerType, CancellationToken> PreLaunchAction => new Action<ILogger, PluginManagerType, CancellationToken>((ILogger logger, PluginManagerType type, CancellationToken cancelToken) => {
-            bool FirstLaunch = Config.Get("DatapathFixFirstLaunch", true) && Config.Get("DatapathFixEnabled", true);
+           
+            bool FirstLaunch = false;
+            bool DAV_EA = ProfilesLibrary.IsLoaded(ProfileVersion.DragonAgeTheVeilguard) && App.FileSystemManager.Head > 3350000;
+
+            if (ProfilesLibrary.IsLoaded(ProfileVersion.DragonAgeTheVeilguard))
+            {
+                FirstLaunch = Config.Get("DatapathFixFirstLaunch", true && DAV_EA);
+            }
+            else
+            {
+                FirstLaunch = Config.Get("DatapathFixFirstLaunch", true);
+            }
 
             if (FirstLaunch)
             {
-                MessageBoxResult result = FrostyMessageBox.Show(
-                    "DatapathFix fixes an issue with modding games on Epic Games Store where mods do not appear in the game.\n\r\n" +
-                    "It can also be used to bypass the 'Launch Game with custom arguments' window on Steam when launching the game. If the game fails to launch or your mods do not appear in-game when this plugin is enabled, you can disable it by going to: Tools > Options > DatapathFix Options.\n\n" +
-                    "Would you like to keep this plugin enabled?", "DatapathFixPlugin", MessageBoxButton.YesNo);
+                string FirstLaunchText = $"If '{ProfilesLibrary.DisplayName}' was purchased on Steam or the Epic Games Store and if it requires the EA App to be installed, the DatapathFix plugin must be enabled for mods to apply correctly.\n\nWould you like to enable this plugin now?";
 
-                if (result == MessageBoxResult.No || result == MessageBoxResult.Cancel)
+                if (DAV_EA)
                 {
-                    FrostyMessageBox.Show("DatapathFix has been disabled", "DatapathFixPlugin", MessageBoxButton.OK);
+                    FirstLaunchText = $"DatapathFix has detected the EA App version of '{ProfilesLibrary.DisplayName}'.\n\nIf it was purchased on the Epic Games Store, the DatapathFix plugin must be enabled for mods to apply correctly; if purchased on the EA App, it can be disabled.\n\nWould you like to enable this plugin now?";
+                }
+
+                MessageBoxResult result = FrostyMessageBox.Show(FirstLaunchText, "DatapathFixPlugin", MessageBoxButton.YesNo);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    Config.Add("DatapathFixEnabled", true);
+                }
+                else
+                {
                     Config.Add("DatapathFixEnabled", false);
                 }
 
@@ -58,7 +76,7 @@ namespace DatapathFixPlugin.Actions {
                 Config.Save();
             }
 
-            if (Config.Get("DatapathFixEnabled", true) && File.Exists(DatapathFix)) {
+            if (Config.Get("DatapathFixEnabled", false) && File.Exists(DatapathFix)) {
                 ResetGameDirectory();
 
                 Thread.Sleep(1000);
@@ -118,16 +136,16 @@ namespace DatapathFixPlugin.Actions {
 
         public LaunchExecutionAction() {
             App.Logger.Log($"DatapathFix v{CurrentVersion} by Dyvinia");
-            App.Logger.Log(@"Github: https://github.com/J-Lyt/DatapathFixPlugin");
+            App.Logger.Log(@"Github: https://github.com/J-Lyt/DatapathFixPlugin/tree/submodule");
             App.Logger.Log(@"Donate: https://ko-fi.com/Dyvinia");
 
             if (ProfilesLibrary.IsLoaded(ProfileVersion.DragonAgeTheVeilguard))
             {
-                App.Logger.Log(@"Note: This plugin is only needed for Epic Games Store but can be used to bypass the 'Launch Game with custom arguments' window on Steam.");
+                App.Logger.Log($@"Note: This plugin should only be enabled if '{ProfilesLibrary.DisplayName}' was purchased on the Epic Games Store.");
             }
             else
             {
-                App.Logger.Log(@"Note: This plugin is only needed for Steam or Epic Games Store; no longer needed when using only the EA App.");
+                App.Logger.Log($@"Note: This plugin should only be enabled if '{ProfilesLibrary.DisplayName}' was purchased on Steam or the Epic Games Store and if it requires the EA App to be installed.");
             }
 
             ExtractDatapathFix();

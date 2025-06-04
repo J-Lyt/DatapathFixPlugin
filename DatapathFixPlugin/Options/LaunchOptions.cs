@@ -11,7 +11,7 @@ namespace DatapathFixPlugin.Options {
         [DisplayName("Enabled")]
         [Description("Enables DatapathFix")]
         [EbxFieldMeta(EbxFieldType.Boolean)]
-        public bool DatapathFixEnabled { get; set; } = true;
+        public bool DatapathFixEnabled { get; set; } = false;
 
         [Category("DatapathFix")]
         [DisplayName("First Launch")]
@@ -26,7 +26,7 @@ namespace DatapathFixPlugin.Options {
         public bool DatapathFixDebugMode { get; set; } = false;
 
         public override void Load() {
-            DatapathFixEnabled = Config.Get("DatapathFixEnabled", true);
+            DatapathFixEnabled = Config.Get("DatapathFixEnabled", false);
             DatapathFixFirstLaunch = Config.Get("DatapathFixFirstLaunch", true);
             DatapathFixDebugMode = Config.Get("DatapathFixDebugMode", false);
         }
