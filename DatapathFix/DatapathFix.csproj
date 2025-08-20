@@ -93,7 +93,7 @@
 	<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" /> 
 	
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<Exec Command="xcopy /Y &quot;$(TargetPath)&quot; &quot;..\DatapathFixPlugin\DatapathFix\&quot;" />
+		<Exec Command='xcopy /Y "$(TargetPath)" "..\DatapathFixPlugin\DatapathFix\"' />
 	</Target>
 	
 </Project>
